@@ -33,11 +33,9 @@ public class NumberActivity extends AppCompatActivity {
          words.add("nine");
          words.add("ten");
 
-         TextView textView = (TextView) findViewById(R.id.word);
-         textView.setText((CharSequence) words);
 
 
-        ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words );
+        ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(this, R.id.list, words );
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(itemAdapter);
 
