@@ -4,7 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class NumberActivity extends AppCompatActivity {
@@ -14,27 +20,27 @@ public class NumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number);
 
-        String[] words = new String[10];
+        ArrayList<String> words = new ArrayList<String>();
 
-         words[0] = "one";
-         words[1] = "two";
-         words[2] = "three";
-         words[3] = "four";
-         words[4] = "five";
-         words[5] = "six";
-         words[6] = "seven";
-         words[7] = "Eight";
-         words[8] = "nine";
-         words[9] = "ten";
+         words.add("one");
+         words.add("two");
+         words.add("three");
+         words.add("four");
+         words.add("five");
+         words.add("six");
+         words.add("seven");
+         words.add("Eight");
+         words.add("nine");
+         words.add("ten");
 
-        Log.v("NumberActivity", "word at index 0 : " + words[0] );
-        Log.v("NumberActivity", "word at index 1 : " + words[1] );
+         TextView textView = (TextView) findViewById(R.id.word);
+         textView.setText((CharSequence) words);
 
 
+        ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words );
+        ListView listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(itemAdapter);
 
     }
-
-
-
 
 }
