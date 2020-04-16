@@ -11,9 +11,10 @@ public class Word {
 
 
 //  Constructor that take 2 inputs
-   public Word(String miwokTranslaton,String defaultTranslation){
-       miwokTranslaton = mMiwokTranslaton;
-       defaultTranslation = mDefaultTranslation;
+   public Word(String defaultTranslation, String miwokTranslaton){
+
+       mDefaultTranslation = defaultTranslation;
+       mMiwokTranslaton = miwokTranslaton;
    }
 
    /**methods */

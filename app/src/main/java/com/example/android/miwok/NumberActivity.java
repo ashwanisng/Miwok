@@ -20,24 +20,29 @@ public class NumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number);
 
-        ArrayList<String> words = new ArrayList<String>();
+        ArrayList<Word> words = new ArrayList<>();
 
-         words.add("one");
-         words.add("two");
-         words.add("three");
-         words.add("four");
-         words.add("five");
-         words.add("six");
-         words.add("seven");
-         words.add("Eight");
-         words.add("nine");
-         words.add("ten");
+//         one way of creating the object of word class
+//         Word w = new Word("Lutti", "One");
+//         words.add(w);
+
+         words.add(new Word("One", "Lutti"));
+         words.add(new Word("Two", "Otiiko"));
+         words.add(new Word("Three", "Tolookosu"));
+         words.add(new Word("Four", "Oyyisa"));
+         words.add(new Word("Five", "Massokka"));
+         words.add(new Word("Six", "Temmokka"));
+         words.add(new Word("Seven", "Kenekaku"));
+         words.add(new Word("Eight", "Kawinta"));
+         words.add(new Word("Nine", "Wo'e"));
+         words.add(new Word("Ten", "Na'accha"));
 
 
+//      Now pass ArrayList into the adapter
 
-        ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(this, R.id.list, words );
+        WordAdapter adapter = new WordAdapter(this,  words );
         ListView listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(itemAdapter);
+        listView.setAdapter(adapter);
 
     }
 
