@@ -28,13 +28,11 @@ public class FamilyAdapter extends ArrayAdapter<Family> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.item_family, parent, false);
         }
 
+        TextView textView1 = (TextView)listItemView.findViewById(R.id.default_family_view);
+        textView1.setText(currentFam.getmDefaulFamilyText());
+
         TextView textView = (TextView)listItemView.findViewById(R.id.miwok_family_view);
         textView.setText(currentFam.getmMiwokFamilyText());
-
-        TextView textView1 = (TextView)listItemView.findViewById(R.id.default_family_view);
-        textView.setText(currentFam.getmDefaulFamilyText());
-
-
 
         return listItemView;
     }
