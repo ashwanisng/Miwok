@@ -4,10 +4,12 @@ public class Family {
 
     private String mDefaulFamilyText;
     private String mMiwokFamilyText;
+    private int mImageResourceId;
 
-    public Family(String defaulFamilyText, String miwokFamilyText){
+    public Family(String defaulFamilyText, String miwokFamilyText, int imageResourceId){
         mDefaulFamilyText = defaulFamilyText;
         mMiwokFamilyText = miwokFamilyText;
+        mImageResourceId = imageResourceId;
     }
 
     public String getmDefaulFamilyText() {
@@ -16,5 +18,9 @@ public class Family {
 
     public String getmMiwokFamilyText() {
         return mMiwokFamilyText;
+    }
+
+    public int getmImageResourceId() {
+        return mImageResourceId;
     }
 }

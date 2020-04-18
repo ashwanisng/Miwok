@@ -15,14 +15,14 @@ public class ColorsActivity extends AppCompatActivity {
 
         ArrayList<Color> colors = new ArrayList<>();
 
-        colors.add(new Color("Red", "Weṭeṭṭi"));
-        colors.add(new Color("Green", "Chokokki"));
-        colors.add(new Color("Brown", "Takaakki"));
-        colors.add(new Color("Gray", "Topoppi"));
-        colors.add(new Color("Black", "Kululli"));
-        colors.add(new Color("White", "Kelelli"));
-        colors.add(new Color("Dusty Yellow", "Topiisә"));
-        colors.add(new Color("Mustard Yellow", "Chiwiiṭә"));
+        colors.add(new Color("Red", "Weṭeṭṭi",R.drawable.color_red));
+        colors.add(new Color("Green", "Chokokki",R.drawable.color_green));
+        colors.add(new Color("Brown", "Takaakki",R.drawable.color_brown));
+        colors.add(new Color("Gray", "Topoppi",R.drawable.color_gray));
+        colors.add(new Color("Black", "Kululli",R.drawable.color_black));
+        colors.add(new Color("White", "Kelelli",R.drawable.color_white));
+        colors.add(new Color("Dusty Yellow", "Topiisә",R.drawable.color_dusty_yellow));
+        colors.add(new Color("Mustard Yellow", "Chiwiiṭә",R.drawable.color_mustard_yellow));
 
         ColorAdapter colorAdapter = new ColorAdapter(this, colors);
         ListView listView = (ListView) findViewById(R.id.list_color);

@@ -1,7 +1,5 @@
 package com.example.android.miwok;
 
-import android.content.Context;
-
 public class Word {
     /** Default translational of the word */
     private String mDefaultTranslation;
@@ -9,12 +7,16 @@ public class Word {
     /** Miwok translational of the word */
     private String mMiwokTranslaton;
 
+    /**Image of the word */
+
+    private int mImageResourceId;
 
 //  Constructor that take 2 inputs
-   public Word(String defaultTranslation, String miwokTranslaton){
+   public Word(String defaultTranslation, String miwokTranslaton, int imageResourceId){
 
        mDefaultTranslation = defaultTranslation;
        mMiwokTranslaton = miwokTranslaton;
+       mImageResourceId = imageResourceId;
    }
 
    /**methods */
@@ -27,5 +29,7 @@ public class Word {
         return mMiwokTranslaton;
     }
 
-
+    public int getmImage() {
+        return mImageResourceId;
+    }
 }

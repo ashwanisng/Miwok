@@ -5,23 +5,41 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list_item_color"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/miwok_family_view"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="әpә">
+        android:orientation="horizontal">
 
-    </TextView>
+        <ImageView
+            android:id="@+id/image_fam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher">
 
-    <TextView
-        android:id="@+id/default_family_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="father">
+        </ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:orientation="vertical">
 
-    </TextView>
+            <TextView
+                android:id="@+id/miwok_family_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="әpә">
+            </TextView>
+
+            <TextView
+                android:id="@+id/default_family_view"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                tools:text="Father">
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

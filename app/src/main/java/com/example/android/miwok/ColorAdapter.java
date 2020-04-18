@@ -3,10 +3,12 @@ package com.example.android.miwok;
 import android.app.Activity;
 import android.content.Context;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +50,9 @@ public class ColorAdapter extends ArrayAdapter<Color> {
         TextView miwokColor = (TextView)listItemView.findViewById(R.id.miwok_color_view);
 
         miwokColor.setText(cuurentColor.getmMiwokColorText());
+
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image_col);
+        imageView.setImageResource(cuurentColor.getmImageResourceId());
 
         return listItemView;
     }
