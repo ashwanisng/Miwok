@@ -4,7 +4,8 @@ public class Color {
 
     private String mDefaultColorText;
     private String mMiwokColorText;
-    private int mImageResourceId;
+    private int mImageResourceId = No_IMAGE_PROVIDE;
+    public static final int No_IMAGE_PROVIDE = -1;
 
 
     public Color(String defaultColorText, String miwokColorText, int imageResourceId){
@@ -23,5 +24,9 @@ public class Color {
 
     public int getmImageResourceId() {
         return mImageResourceId;
+    }
+
+    public boolean hasImage(){
+        return mImageResourceId != No_IMAGE_PROVIDE;
     }
 }

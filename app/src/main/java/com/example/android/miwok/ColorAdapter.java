@@ -52,7 +52,16 @@ public class ColorAdapter extends ArrayAdapter<Color> {
         miwokColor.setText(cuurentColor.getmMiwokColorText());
 
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image_col);
-        imageView.setImageResource(cuurentColor.getmImageResourceId());
+        if (cuurentColor.hasImage()){
+            imageView.setImageResource(cuurentColor.getmImageResourceId());
+
+//            set the Visibility of the image
+            imageView.setVisibility(View.VISIBLE);
+        }
+        else {
+//            set visibility to gone does not show any thing
+            imageView.setVisibility(View.GONE);
+        }
 
         return listItemView;
     }

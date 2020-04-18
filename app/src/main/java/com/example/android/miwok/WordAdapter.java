@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
@@ -61,7 +62,17 @@ public class WordAdapter extends ArrayAdapter<Word> {
         miwokWord.setText(currentWord.getMiwokTranslaton());
 
         ImageView imageView = (ImageView)listItemView.findViewById(R.id.image_num);
-        imageView.setImageResource(currentWord.getmImage());
+        if (currentWord.hasImage()){
+            imageView.setImageResource(currentWord.getmImage());
+
+//            set the Visibility of the image
+            imageView.setVisibility(View.VISIBLE);
+        }
+        else {
+//            set visibility to gone does not show any thing
+            imageView.setVisibility(View.GONE);
+        }
+
 
 
 

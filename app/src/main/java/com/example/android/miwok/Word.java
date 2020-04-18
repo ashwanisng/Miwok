@@ -9,7 +9,9 @@ public class Word {
 
     /**Image of the word */
 
-    private int mImageResourceId;
+    private int mImageResourceId = No_IMAGE_PROVIDE;
+
+    private static final int No_IMAGE_PROVIDE = -1;
 
 //  Constructor that take 2 inputs
    public Word(String defaultTranslation, String miwokTranslaton, int imageResourceId){
@@ -31,5 +33,9 @@ public class Word {
 
     public int getmImage() {
         return mImageResourceId;
+    }
+
+    public boolean hasImage(){
+       return mImageResourceId != No_IMAGE_PROVIDE;
     }
 }

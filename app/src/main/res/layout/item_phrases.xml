@@ -3,14 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="88dp"
     android:orientation="vertical"
+    android:background="#16AFCA"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/miwok_phrase_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         tools:text="minto wuksus">
 
     </TextView>
@@ -19,6 +23,8 @@
         android:id="@+id/default_phrases_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         tools:text="Where are you going?">
 
     </TextView>

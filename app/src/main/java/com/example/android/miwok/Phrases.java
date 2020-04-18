@@ -17,4 +17,6 @@ public class Phrases {
     public String getMiwokPhrasesText() {
         return mMiwokPhrasesText;
     }
+
+
 }
