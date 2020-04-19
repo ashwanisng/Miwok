@@ -7,6 +7,8 @@ public class Word {
     /** Miwok translational of the word */
     private String mMiwokTranslaton;
 
+    private int mMediaAudio;
+
     /**Image of the word */
 
     private int mImageResourceId = No_IMAGE_PROVIDE;
@@ -14,11 +16,12 @@ public class Word {
     private static final int No_IMAGE_PROVIDE = -1;
 
 //  Constructor that take 2 inputs
-   public Word(String defaultTranslation, String miwokTranslaton, int imageResourceId){
+   public Word(String defaultTranslation, String miwokTranslaton, int imageResourceId, int mediaAudio){
 
        mDefaultTranslation = defaultTranslation;
        mMiwokTranslaton = miwokTranslaton;
        mImageResourceId = imageResourceId;
+       mMediaAudio = mediaAudio;
    }
 
    /**methods */
@@ -33,6 +36,10 @@ public class Word {
 
     public int getmImage() {
         return mImageResourceId;
+    }
+
+    public int getmMediaAudio() {
+        return mMediaAudio;
     }
 
     public boolean hasImage(){
