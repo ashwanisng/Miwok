@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,11 @@ import java.util.ArrayList;
 
 public class FamilyAdapter extends ArrayAdapter<Family> {
 
-    public FamilyAdapter(Activity context, ArrayList<Family>families) {
+    private int mColorResourceId;
+
+    public FamilyAdapter(Activity context, ArrayList<Family>families, int colorResourceId) {
         super(context, 0, families);
+        mColorResourceId = colorResourceId;
     }
 
     @Override
@@ -37,6 +41,15 @@ public class FamilyAdapter extends ArrayAdapter<Family> {
 
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image_fam);
         imageView.setImageResource(currentFam.getmImageResourceId());
+
+//        set the background theme of the background text
+        View txtBackground = listItemView.findViewById(R.id.txt_container_fam);
+
+//        find the color that matches the background
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+
+//        call the color
+        txtBackground.setBackgroundColor(color);
 
         return listItemView;
     }

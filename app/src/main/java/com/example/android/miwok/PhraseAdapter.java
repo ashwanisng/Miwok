@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,12 @@ import java.util.ArrayList;
 
 public class PhraseAdapter extends ArrayAdapter<Phrases> {
 
+    private int mColorResourceIdl;
 
-    public PhraseAdapter(Activity context, ArrayList<Phrases> phrases) {
+
+    public PhraseAdapter(Activity context, ArrayList<Phrases> phrases, int colorResourceIdl) {
         super(context, 0, phrases);
+        mColorResourceIdl = colorResourceIdl;
     }
 
 
@@ -37,6 +41,17 @@ public class PhraseAdapter extends ArrayAdapter<Phrases> {
 
         TextView miwokText = (TextView)listItemView.findViewById(R.id.miwok_phrase_text);
         miwokText.setText(currentPharses.getMiwokPhrasesText());
+
+//        set the background theme
+        View textContainer = listItemView.findViewById(R.id.txt_container_phrases);
+
+//        call the color by id
+        int color = ContextCompat.getColor(getContext(),mColorResourceIdl);
+
+//        call the colors
+        textContainer.setBackgroundColor(color);
+
+
 
         return listItemView;
     }

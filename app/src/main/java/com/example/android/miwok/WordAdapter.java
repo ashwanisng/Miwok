@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +14,16 @@ import java.util.IllegalFormatCodePointException;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
+    private int mColorResourceId;
 
-    public WordAdapter(Activity context, ArrayList<Word> words) {
+
+    public WordAdapter(Activity context, ArrayList<Word> words, int colorResourceId) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, words);
+        mColorResourceId =colorResourceId;
     }
 
 
@@ -73,8 +77,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
             imageView.setVisibility(View.GONE);
         }
 
+//        set theme for the list item view
+        View textContainer = listItemView.findViewById(R.id.txt_container);
 
+//        Find the color that resource id maps to
 
+        int color = ContextCompat.getColor(getContext(),mColorResourceId);
+
+//        set the background of the text container
+
+        textContainer.setBackgroundColor(color);
 
         return listItemView;
     }

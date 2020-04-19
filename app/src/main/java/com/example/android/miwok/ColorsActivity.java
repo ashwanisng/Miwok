@@ -24,7 +24,7 @@ public class ColorsActivity extends AppCompatActivity {
         colors.add(new Color("Dusty Yellow", "Topiisә",R.drawable.color_dusty_yellow));
         colors.add(new Color("Mustard Yellow", "Chiwiiṭә",R.drawable.color_mustard_yellow));
 
-        ColorAdapter colorAdapter = new ColorAdapter(this, colors);
+        ColorAdapter colorAdapter = new ColorAdapter(this, colors, R.color.category_colors);
         ListView listView = (ListView) findViewById(R.id.list_color);
         listView.setAdapter(colorAdapter);
 

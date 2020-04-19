@@ -20,10 +20,10 @@
 
         </ImageView>
         <LinearLayout
+            android:id="@+id/txt_container_fam"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            android:background="#379237"
             android:orientation="vertical">
 
             <TextView

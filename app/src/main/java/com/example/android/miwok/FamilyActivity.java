@@ -26,8 +26,10 @@ public class FamilyActivity extends AppCompatActivity {
         families.add(new Family("grandmother", "ama",R.drawable.family_grandmother));
         families.add(new Family("grandfather", "paapa",R.drawable.family_grandfather));
 
-        FamilyAdapter adapter = new FamilyAdapter(this,families);
+        FamilyAdapter adapter = new FamilyAdapter(this,families, R.color.category_family);
+
         ListView listView = (ListView)findViewById(R.id.list_family);
+
         listView.setAdapter(adapter);
 
     }

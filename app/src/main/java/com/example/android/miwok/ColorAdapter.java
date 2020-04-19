@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import android.provider.ContactsContract;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,11 @@ import java.util.ArrayList;
 
 public class ColorAdapter extends ArrayAdapter<Color> {
 
-    public ColorAdapter(Activity context, ArrayList<Color> colors) {
+    private int mColorResourceId;
+
+    public ColorAdapter(Activity context, ArrayList<Color> colors, int colorResourceId) {
         super(context, 0, colors);
+         mColorResourceId = colorResourceId;
     }
 
     /**
@@ -62,6 +66,15 @@ public class ColorAdapter extends ArrayAdapter<Color> {
 //            set visibility to gone does not show any thing
             imageView.setVisibility(View.GONE);
         }
+
+//        set background theme of the text color
+        View textContainer = listItemView.findViewById(R.id.txt_container_col);
+
+//        set color by id
+        int color = ContextCompat.getColor(getContext(),mColorResourceId);
+
+//        call the background color
+        textContainer.setBackgroundColor(color);
 
         return listItemView;
     }
