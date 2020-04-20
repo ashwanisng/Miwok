@@ -11,6 +11,13 @@ import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
 
+    private MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            releaseMediaPlayer();
+        }
+    };
+
     private MediaPlayer mMediaPlayer;
 
     @Override
@@ -45,11 +52,43 @@ public class FamilyActivity extends AppCompatActivity {
 //                to get the object postion when user click
                 Family family = families.get(position);
 
+//                release the media player if its exist because we want to play the different sound file
+                releaseMediaPlayer();
+
 //                create setup of resource id
                 mMediaPlayer = MediaPlayer.create(FamilyActivity.this, family.getmAudioResourceId());
                 mMediaPlayer.start();
+
+//                create and setup the audio resource file so that we can
+//                play and release the song once its finished
+
+                mMediaPlayer.setOnCompletionListener(completionListener);
             }
         });
-
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+//        when activity is stopped the release media player is called to stop
+        releaseMediaPlayer();
+    }
+
+    /**
+     * Clean up the media player by releasing its resources.
+     */
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mMediaPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mMediaPlayer.release();
+
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mMediaPlayer = null;
+        }
+    }
+
 }
