@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class WordAdapter extends ArrayAdapter<Word> {
 
     private int mColorResourceId;
-    private MediaPlayer mediaPlayer;
 
 
     public WordAdapter(Activity context, ArrayList<Word> words, int colorResourceId) {
@@ -88,8 +87,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
 //        set the background of the text container
 
         textContainer.setBackgroundColor(color);
-
-        mediaPlayer = MediaPlayer.create(this,R)
 
         return listItemView;
     }

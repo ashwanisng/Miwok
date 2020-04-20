@@ -7,11 +7,14 @@ public class Color {
     private int mImageResourceId = No_IMAGE_PROVIDE;
     public static final int No_IMAGE_PROVIDE = -1;
 
+    private int mAudioResourceId;
 
-    public Color(String defaultColorText, String miwokColorText, int imageResourceId){
+
+    public Color(String defaultColorText, String miwokColorText, int imageResourceId, int audioResourceId){
         mDefaultColorText = defaultColorText;
         mMiwokColorText = miwokColorText;
         mImageResourceId = imageResourceId;
+        mAudioResourceId = audioResourceId;
     }
 
     public String getmDefaultColorText() {
@@ -28,5 +31,9 @@ public class Color {
 
     public boolean hasImage(){
         return mImageResourceId != No_IMAGE_PROVIDE;
+    }
+
+    public int getmAudioResourceId() {
+        return mAudioResourceId;
     }
 }
