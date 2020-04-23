@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/list_item_height"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/image_col"
+        android:layout_width="88dp"
         android:layout_height="88dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/image_col"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:background="#FFF7DA"
-            android:src="@mipmap/ic_launcher">
+        android:background="#FFF7DA"
+        android:src="@mipmap/ic_launcher">
 
         </ImageView>
-        <LinearLayout
-            android:id="@+id/txt_container_col"
+
+    <RelativeLayout
+        android:id="@+id/txt_container_col"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/image_col"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/miwok_color_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            tools:text="Weṭeṭṭi">
+        </TextView>
 
-            <TextView
-                android:id="@+id/miwok_color_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                tools:text="Weṭeṭṭi">
-            </TextView>
+        <TextView
+            android:id="@+id/default_color_view"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textColor="#FFFFFF"
+            android:layout_below="@+id/miwok_color_view"
+            android:textSize="18sp"
+            android:layout_marginLeft="16dp"
+            tools:text="Red">
+        </TextView>
 
-            <TextView
-                android:id="@+id/default_color_view"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                tools:text="Red">
-            </TextView>
-        </LinearLayout>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_play_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp">
 
-    </LinearLayout>
+        </ImageView>
 
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
