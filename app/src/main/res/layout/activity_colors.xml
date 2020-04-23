@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/list_color"
     android:orientation="vertical"
+    android:drawSelectorOnTop="true"
     tools:context=".ColorsActivity">
 
 </ListView>
