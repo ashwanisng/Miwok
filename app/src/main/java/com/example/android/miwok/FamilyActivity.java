@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,11 +21,36 @@ public class FamilyActivity extends AppCompatActivity {
     };
 
     private MediaPlayer mMediaPlayer;
+    private AudioManager mAudioManager;
+
+    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+            new AudioManager.OnAudioFocusChangeListener(){
+                @Override
+                public void onAudioFocusChange(int focusChange) {
+                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+//                        pause playback
+                        mMediaPlayer.pause();
+                        mMediaPlayer.seekTo(0);
+                    }else if (focusChange == AudioManager.AUDIOFOCUS_GAIN){
+//                        playback resume
+                        mMediaPlayer.start();
+                    }else if (focusChange == AudioManager.AUDIOFOCUS_LOSS){
+                        releaseMediaPlayer();
+//                        stop media playback
+                    }
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_family);
+
+
+//      to get reference to the audio manager system service
+        mAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+
 
         final ArrayList<Family> families = new ArrayList<>();
 
@@ -55,14 +82,23 @@ public class FamilyActivity extends AppCompatActivity {
 //                release the media player if its exist because we want to play the different sound file
                 releaseMediaPlayer();
 
+                // request audio focus for playback
+                int result  = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+//                       Use the music stream
+                        AudioManager.STREAM_MUSIC,
+//                      request permanent focus
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 //                create setup of resource id
-                mMediaPlayer = MediaPlayer.create(FamilyActivity.this, family.getmAudioResourceId());
-                mMediaPlayer.start();
+                    mMediaPlayer = MediaPlayer.create(FamilyActivity.this, family.getmAudioResourceId());
+                    mMediaPlayer.start();
 
 //                create and setup the audio resource file so that we can
 //                play and release the song once its finished
 
-                mMediaPlayer.setOnCompletionListener(completionListener);
+                    mMediaPlayer.setOnCompletionListener(completionListener);
+                }
             }
         });
     }
@@ -88,6 +124,9 @@ public class FamilyActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
+
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
+
         }
     }
 

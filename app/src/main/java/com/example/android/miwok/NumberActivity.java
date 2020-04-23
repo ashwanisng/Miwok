@@ -40,10 +40,7 @@ public class NumberActivity extends AppCompatActivity {
                        releaseMediaPlayer();
 //                        stop media playback
                     }
-
                 }
-
-
             };
 
     @Override
@@ -91,7 +88,6 @@ public class NumberActivity extends AppCompatActivity {
                 releaseMediaPlayer();
 
 //                request audio focus for playback
-
                 int result  = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
 //                       Use the music stream
                         AudioManager.STREAM_MUSIC,
