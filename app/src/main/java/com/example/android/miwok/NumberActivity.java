@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +22,37 @@ public class NumberActivity extends AppCompatActivity {
     };
 
     private MediaPlayer mediaPlayer;
+    private AudioManager mAudioManager;
+
+    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+            new AudioManager.OnAudioFocusChangeListener(){
+                @Override
+                public void onAudioFocusChange(int focusChange) {
+                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+//                        pause playback
+                        mediaPlayer.pause();
+                        mediaPlayer.seekTo(0);
+                    }else if (focusChange == AudioManager.AUDIOFOCUS_GAIN){
+//                        playback resume
+                        mediaPlayer.start();
+                    }else if (focusChange == AudioManager.AUDIOFOCUS_LOSS){
+                       releaseMediaPlayer();
+//                        stop media playback
+                    }
+
+                }
+
+
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number);
+
+//      to get reference to the audio manager system service
+        mAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
 
 
         final ArrayList<Word> words = new ArrayList<>();
@@ -62,13 +90,25 @@ public class NumberActivity extends AppCompatActivity {
 //                release the media player if its exist because we want to play the different sound file
                 releaseMediaPlayer();
 
-                // Create and setup the {@link MediaPlayer} for the audio resource associated
-                mediaPlayer = MediaPlayer.create(NumberActivity.this,word.getmMediaAudio());
-                mediaPlayer.start();
+//                request audio focus for playback
+
+                int result  = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+//                       Use the music stream
+                        AudioManager.STREAM_MUSIC,
+//                      request permanent focus
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+
+//                    we have audio focus now
+//              Create and setup the {@link MediaPlayer} for the audio resource associated
+                    mediaPlayer = MediaPlayer.create(NumberActivity.this, word.getmMediaAudio());
+                    mediaPlayer.start();
 
 //              set up and create the resource file so that we can release the media player
 //                once the song is finished
-                mediaPlayer.setOnCompletionListener(completionListener);
+                    mediaPlayer.setOnCompletionListener(completionListener);
+                }
             }
         });
     }
@@ -94,6 +134,8 @@ public class NumberActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mediaPlayer = null;
+
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
 
